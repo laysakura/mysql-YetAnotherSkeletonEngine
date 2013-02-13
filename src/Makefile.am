@@ -13,13 +13,13 @@ noinst_HEADERS = ha_skeleton.h \
 
 lib_LTLIBRARIES = libskeleton_engine.la
 libskeleton_engine_la_SOURCES = ha_skeleton.cc
-libskeleton_engine_la_LIBADD = $(MYSQL_SRC)/libservices/libmysqlservices.a
+libskeleton_engine_la_LIBADD = -lmysqlservices
 
 if HAVE_DTRACE
   libskeleton_engine_la_LIBADD += skeleton_probes.o
 endif
 
-libskeleton_engine_la_LDFLAGS =	-module
+libskeleton_engine_la_LDFLAGS =	-module -L$(MYSQL_SRC)/libservices/
 libskeleton_engine_la_CFLAGS = $(AM_CFLAGS) -DMYSQL_DYNAMIC_PLUGIN
 libskeleton_engine_la_CXXFLAGS = $(AM_CFLAGS) -DMYSQL_DYNAMIC_PLUGIN
 
