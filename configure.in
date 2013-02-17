@@ -23,7 +23,7 @@ AC_SUBST(MYSQL_SRC)
 # We only support GCC and Sun's forte at the moment
 if test "$GCC" = "yes"
 then
-  CXXFLAGS="$CXXFLAGS"
+  CXXFLAGS="$CXXFLAGS -fno-omit-frame-pointer -fno-strict-aliasing -DSAFE_MUTEX"
 else
   CFLAGS="-Xa -xstrconst -mt -D_FORTEC_ -fast -m64"
   CXXFLAGS="$CXXFLAGS -noex -mt -D_FORTEC_ -fast -m64"
